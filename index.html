@@ -1,6 +1,16 @@
 <html>
 <head>
-<script type="text/javascript">
+<link rel="manifest" href="/manifest.json" />
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  var OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "be4d0256-b826-4162-b82f-ffec0edbae05",
+    });
+  });
+</script>
+<!-- <script type="text/javascript">
      (function() {
         if(window.location.href.indexOf('hash') == -1){
            var hash = prompt("Enter account hash", "255a91a0b4a0bf562e5148efc6de9b97");
@@ -56,7 +66,7 @@
 <script>
     window._pcq = window._pcq || [];
     window._pcq.push(['tag', 'AUTOMATION', 'E2E-Auto']);
-</script>
+</script> -->
 <style>
 .button {
     background-color: #4CAF50;
