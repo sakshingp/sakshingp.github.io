@@ -1,7 +1,7 @@
 {
     "name": "Sakshingp73 Push Notification",
     "short_name": "sakshingp73",
-    "gcm_sender_id": "539876079581",
+    "gcm_sender_id": "1057112439681",
     "start_url": "/",
     "display": "standalone",
     "icons": [
