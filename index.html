@@ -26,9 +26,9 @@
     var src;
     var account_hash=getQueryStringValue('hash') ? getQueryStringValue('hash') : '255a91a0b4a0bf562e5148efc6de9b97';
     if(getQueryStringValue('env') == "") {
-        src = 'https://cdn.pushcrew.com/js/'+ account_hash + '.js';
+        src = 'https://cdn.pushcrew.com/js/'+ account_hash + '.js?random='+Date.now()';
     } else {
-        src = 'https://cdn.pushcrewstaging.com/js/'+ account_hash + '.js';
+        src = 'https://cdn.pushcrewstaging.com/js/'+ account_hash + '.js?random='+Date.now()';
     }
     var qajs = 'test-jslib';
     (function(p,u,s,h){
