@@ -1,7 +1,7 @@
 {
     "name": "push-alert",
-    "short_name": "sakshingp83",
-    "gcm_sender_id": "1057112439681",
+    "short_name": "sakshingp53",
+    "gcm_sender_id": "539876079581",
     "start_url": "/",
     "display": "standalone",
     "icons": [
