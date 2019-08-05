@@ -59,6 +59,7 @@
         d.setTime(d.getTime() + (365*24*60*60*1000));
         var expires = "expires="+ d.toUTCString();
         document.cookie = 'qa-cookie' + "=" + 'jslib-test' + ";" + expires + ";path=/";
+        document.cookie = 'test-cookie' + "=" + '' + ";" + expires + ";path=/";
     };
     function setreferrer() {
         document.getElementById("refer").href = window.location.href;
