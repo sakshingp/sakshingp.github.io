@@ -12,6 +12,7 @@
         <!-- End PushAlert -->
    
  <script type="text/javascript">
+     window._pushcrew_http_font = 'Open Sans';
      (function() {
         if(window.location.href.indexOf('hash') == -1){
            var hash = prompt("Enter account hash", "24bea2fb1747789fe7b14a87445f9628");
@@ -34,7 +35,6 @@
         src = 'https://cdn.pushcrewstaging.com/js/'+ account_hash + '.js?random=' + Date.now();
     }
     var qajs = 'test-jslib';
-    window._pushcrew_http_font = 'Open Sans';
     (function(p,u,s,h){
         p._pcq=p._pcq||[];
         p._pcq.push(['_currentTime',Date.now()]);
