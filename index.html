@@ -34,6 +34,7 @@
         src = 'https://cdn.pushcrewstaging.com/js/'+ account_hash + '.js?random=' + Date.now();
     }
     var qajs = 'test-jslib';
+    window._pushcrew_http_font = 'Open Sans';
     (function(p,u,s,h){
         p._pcq=p._pcq||[];
         p._pcq.push(['_currentTime',Date.now()]);
@@ -72,7 +73,7 @@
     window._pcq.push(['tag', 'AUTOMATION', 'E2E-Auto']);
     window._pcq.push(['tag', 'browser', 'test']);
   window._pcq.push(['tag', 'person_name', 'test']);
-  window._pushcrew_http_font = 'Open Sans';
+ 
   _pcq.push(['setNonInteraction', function(){return false}]);
 </script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
