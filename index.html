@@ -92,6 +92,9 @@
   function getBrowser(){
     document.getElementById("br").innerHTML =  _pc_s().b();
   }
+  function getUA(){
+    document.getElementById("ua").innerHTML = navigator.userAgent;
+  }
 </script>
 <script>
     window._pcq = window._pcq || [];
@@ -148,9 +151,11 @@ p.info
     <button class="button" id="get-cookie" onclick="getCookies()">Get Cookies</button>
     <button class="button" id="get-ls" onclick="getLs()">Get LocalStorage</button>
     <button class="button" id="get-br" onclick="getBrowser()">Get Browser</button>
+    <button class="button" id="get-ua" onclick="getUA()">Get UA</button>
     <p id="cookies"> </p>
     <p id="ls"> </p>
     <p id="br"> </p>
+    <p id="ua"> </p>
     <p class="info" id="demo"></p>
 </body>
 </html>
