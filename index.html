@@ -89,6 +89,9 @@
             document.getElementById("ls").innerHTML = document.getElementById("ls").innerHTML + '</br>' + val;
         })
     }
+  function getBrowser(){
+    document.getElementById("br").innerHTML =  _pc_s().b();
+  }
 </script>
 <script>
     window._pcq = window._pcq || [];
@@ -144,8 +147,10 @@ p.info
     <button class="button" id="exit" onclick="goal()">Checkout</button>
     <button class="button" id="get-cookie" onclick="getCookies()">Get Cookies</button>
     <button class="button" id="get-ls" onclick="getLs()">Get LocalStorage</button>
+    <button class="button" id="get-br" onclick="getBrowser()">Get Browser</button>
     <p id="cookies"> </p>
     <p id="ls"> </p>
+    <p id="br"> </p>
     <p class="info" id="demo"></p>
 </body>
 </html>
