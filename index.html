@@ -70,7 +70,7 @@
     function getCookies() {
         document.cookie.split(';').forEach(function(val){
             console.log(val);
-            document.getElementById("cookies").innerHTML = document.getElementById("demo").innerHTML + '</br>' + val;
+            document.getElementById("cookies").innerHTML = document.getElementById("cookies").innerHTML + '</br>' + val;
         })
     }
 </script>
@@ -127,7 +127,7 @@ p.info
     <p class="info" id="cart">Cart value is 0</p>
     <button class="button" id="exit" onclick="goal()">Checkout</button>
     <button class="button" id="get-cookie" onclick="getCookies()">Get Cookies</button>
-    <div id="cookies"> </div>
+    <p id="cookies"> </p>
     <p class="info" id="demo"></p>
 </body>
 </html>
