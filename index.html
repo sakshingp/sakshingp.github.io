@@ -67,10 +67,26 @@
     function setreferrer() {
         document.getElementById("refer").href = window.location.href;
     }
+    function allStorage() {
+
+        var archive = [],
+            keys = Object.keys(localStorage),
+            i = 0, key;
+
+        for (; key = keys[i]; i++) {
+            archive.push( key + '=' + localStorage.getItem(key));
+        }
+
+        return archive;
+    }
     function getCookies() {
         document.cookie.split(';').forEach(function(val){
-            console.log(val);
             document.getElementById("cookies").innerHTML = document.getElementById("cookies").innerHTML + '</br>' + val;
+        })
+    }
+    function getLs() {
+        allStorage().forEach(function(val){
+            document.getElementById("ls").innerHTML = document.getElementById("ls").innerHTML + '</br>' + val;
         })
     }
 </script>
@@ -128,6 +144,7 @@ p.info
     <button class="button" id="exit" onclick="goal()">Checkout</button>
     <button class="button" id="get-cookie" onclick="getCookies()">Get Cookies</button>
     <p id="cookies"> </p>
+    <p id="ls"> </p>
     <p class="info" id="demo"></p>
 </body>
 </html>
