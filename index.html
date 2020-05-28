@@ -67,6 +67,11 @@
     function setreferrer() {
         document.getElementById("refer").href = window.location.href;
     }
+    function getCookies() {
+        document.cookie.split(';').forEach(function(val){
+            document.getElementById("cookies").innerHTML = document.getElementById("demo").innerHTML + '</br>' + val;
+        })
+    }
 </script>
 <script>
     window._pcq = window._pcq || [];
@@ -120,6 +125,8 @@ p.info
     <button class="button" id="entry" onclick="addToCart()">Add to cart</button>
     <p class="info" id="cart">Cart value is 0</p>
     <button class="button" id="exit" onclick="goal()">Checkout</button>
+    <button class="button" id="get-cookie" onclick="getCookies()">Get Cookies</button>
+    <div id="cookies"> </div>
     <p class="info" id="demo"></p>
 </body>
 </html>
