@@ -69,6 +69,7 @@
     }
     function getCookies() {
         document.cookie.split(';').forEach(function(val){
+            console.log(val)
             document.getElementById("cookies").innerHTML = document.getElementById("demo").innerHTML + '</br>' + val;
         })
     }
