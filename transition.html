@@ -24,7 +24,7 @@ window._vwo_pc_custom = {
 div {
   width: 100px;
   height: 100px;
-  background: red;
+  background: #9f9;
   transition: width 2s;
 }
 
@@ -32,23 +32,22 @@ div:hover {
   width: 300px;
 }
 div.red {
-  transition: background-color 0.5s ease;
-  background-color: red;
+
   width: 100px;
   height: 100px;
 }
-div.red:hover {
-  background-color: green;
-}
-  @keyframes slideInFromLeft {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
+
+div.red {
+  animation: background 5s cubic-bezier(1,0,0,1);  
 }
 
+
+
+@keyframes background {
+  0% { background-color: #f99; }
+  50% { background-color: #9f9; }  
+
+}
 header {  
   /* This section calls the slideInFromLeft animation we defined above */
   animation: 1s ease-out 0s 1 slideInFromLeft;
@@ -73,6 +72,8 @@ header {
 <p>Hover over the div element below, to see the transition effect:</p>
 
 <div></div>
+
+<br>
   
   <div class="red"></div>
 
