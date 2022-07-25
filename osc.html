@@ -69,6 +69,7 @@
 
 
 <script type="text/javascript">
+    window.account_id=location.search.split('id=')[1] ? location.search.split('id=')[1] :'7000969'
     window._vis_opt_queue = window._vis_opt_queue || [];
     window._vis_opt_queue.push(function() {
         _vis_opt_revenue_conversion("10");
@@ -116,7 +117,7 @@ VWO.push(['onEventReceive', 'jI', function (data) {
 <!-- VWO One smart code ends -->
 
 <!-- Start Visual Website Optimizer Asynchronous Code -->
-<script src="https://dev.visualwebsiteoptimizer.com/lib/" + location.search.split('id=')[1] ? location.search.split('id=')[1] :'7000969' + ".js"></script>
+<script src="https://dev.visualwebsiteoptimizer.com/lib/" + account_id + ".js"></script>
 <script type='text/javascript'>
 
 window.VWO = window.VWO || [];
