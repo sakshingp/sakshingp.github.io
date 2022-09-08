@@ -131,9 +131,9 @@ VWO.push(['config', {
 
 // Call this method to stop the polling
 // setTimeout(function(){
-    
+var account_id = location.search.split('id=')[1] ? location.search.split('id=')[1] : '333214';    
 window._vwo_code = window._vwo_code || (function(){
-var account_id=333214,
+var account_id=account_id,
 version = 1.2,
 settings_tolerance=2000,
 library_tolerance=2500,
