@@ -128,83 +128,18 @@ VWO.push(['config', {
   }
 }]);
 
-
-// Call this method to stop the polling
-// setTimeout(function(){
-window._vwo_code = window._vwo_code || (function(){
+window._vwo_code=window._vwo_code || (function() {
 var account_id=location.search.split('id=')[1] ? location.search.split('id=')[1] : '333214',
-version = 1.2,
-settings_tolerance = 2000,
-               library_tolerance = 2500,
-               use_existing_jquery = false,
-               is_spa = 1,
-               hide_element = 'body',
- 
-               /* DO NOT EDIT BELOW THIS LINE */
-               f = false,
-               d = document,
-               code = {
-                       use_existing_jquery: function() {
-                               return use_existing_jquery;
-                       },
-                       library_tolerance: function() {
-                               return library_tolerance;
-                       },
-                       finish: function() {
-                               if (!f) {
-                                       f = true;
-                                       var a = d.getElementById('_vis_opt_path_hides');
-                                       if (a) a.parentNode.removeChild(a);
-                               }
-                       },
-                       finished: function() {
-                               return f;
-                       },
-                       load: function(a) {
-                               var b = d.createElement('script');
-                               b.src = a;
-                               b.type = 'text/javascript';
-                               b.innerText;
-                               b.onerror = function() {
-                                       _vwo_code.finish();
-                               };
-                               d.getElementsByTagName('head')[0].appendChild(b);
-                       },
-                       getQueryValue: function() {
-                               let matchedCookies = document.cookie.match(/.vis_opt_exp_[0-9]*_combi/g);
-                               let cookies = decodeURIComponent(document.cookie).split(';');
-                               return Array.isArray(matchedCookies)? (matchedCookies.map(function(each){
-                                   let temp = each.match(/[0-9][0-9]*/g);
-                                   if (temp) {
-                                       for (let eachCookie of cookies) {
-                                           if (eachCookie.indexOf(each+'=') > -1) {
-                                               return temp[0] + '-' + eachCookie.split('=')[1];
-                                           }
-                                       }
-                                   }
-                                   return '';
-                               }).join("|")): '';
-                       },
-                       init: function() {
-                               window.settings_timer = setTimeout(function() {
-                                       _vwo_code.finish()
-                               }, settings_tolerance);
-                               var a = d.createElement('style'),
-                                       b = hide_element ? hide_element + '{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}' : '',
-                                       h = d.getElementsByTagName('head')[0];
-                               a.setAttribute('id', '_vis_opt_path_hides');
-                               a.setAttribute('type', 'text/css');
-                               if (a.styleSheet) a.styleSheet.cssText = b;
-                               else a.appendChild(d.createTextNode(b));
-                               h.appendChild(a);
-                               let c = this.getQueryValue();
-                               this.load('https://dev.visualwebsiteoptimizer.com/j.php?a=' + account_id + '&u=' + encodeURIComponent(d.URL) + '&f=' + (+is_spa) + '&r=' + Math.random() +  ((c==='')? '' : '&c=' + c));
-                               return settings_timer;
-                       }
-               };
-       window._vwo_settings_timer = code.init();
-       return code;
- }());
+version=1.4,
+settings_tolerance=2000,
+library_tolerance=2500,
+use_existing_jquery=false,
+is_spa=1,
+hide_element='body',
+/* DO NOT EDIT BELOW THIS LINE */
+f=false,d=document,code={use_existing_jquery:function(){return use_existing_jquery},library_tolerance:function(){return library_tolerance},finish:function(){if(!f){f=true;var e=d.getElementById('_vis_opt_path_hides');if(e)e.parentNode.removeChild(e)}},finished:function(){return f},load:function(e){var t=d.createElement('script');t.fetchPriority='high';t.src=e;t.type='text/javascript';t.innerText;t.onerror=function(){_vwo_code.finish()};d.getElementsByTagName('head')[0].appendChild(t)},get_version:function(){return version},getMatchedCookies:function(e){var t=[];if(document.cookie){t=decodeURIComponent(document.cookie).match(e)||[]}return t},getCombinationCookie:function(){var e=code.getMatchedCookies(/((vis_opt_exp_\d*._combi=[\d,]+))/g);var i=[];e.forEach(function(e){var t=e.match(/(([\d,]+))/g);i.push(t.join('-'))});return i.join('|')},init:function(){window.settings_timer=setTimeout(function(){_vwo_code.finish()},settings_tolerance);var e=d.createElement('style'),t=hide_element?hide_element+'{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}':'',i=d.getElementsByTagName('head')[0];e.setAttribute('id','_vis_opt_path_hides');e.setAttribute('nonce',document.querySelector('#vwoCode').nonce);e.setAttribute('type','text/css');if(e.styleSheet)e.styleSheet.cssText=t;else e.appendChild(d.createTextNode(t));i.appendChild(e);var n=this.getCombinationCookie();this.load('https://dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&f='+ +is_spa+'&vn='+version+(n?'&c='+n:''));return settings_timer}};window._vwo_settings_timer = code.init();return code;}());	
+	
+
 
 _vwo_pc_custom = {
         a: 100,
