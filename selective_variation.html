@@ -128,10 +128,10 @@ VWO.push(['config', {
   }
 }]);
 
-	/* eslint-disable no-undef */
+/* eslint-disable no-undef */
 window._vwo_code = window._vwo_code || (function() {
-    var account_id = location.search.split('id=')[1] ? location.search.split('id=')[1] : '333214',
-        version = 1.4,
+		var account_id = location.search.split('id=')[1] ? location.search.split('id=')[1] : '333214',       
+            version = 1.4,
         settings_tolerance = 2000,
         library_tolerance = 2500,
         use_existing_jquery = false,
@@ -180,12 +180,11 @@ window._vwo_code = window._vwo_code || (function() {
                 return t
             },
             getCombinationCookie: function() {
-	       debugger;
                 var e = code.getMatchedCookies(/(?:^|;)\s?(_vis_opt_exp_\d+_combi=[^;$]*)/gi);
                 e = e.map(function(e) {
                     try {
                         var t = decodeURIComponent(e);
-                        if (!t.test(/_vis_opt_exp_\d+_combi=(?:\d+,?)+\s*$/)) {
+                        if (!/_vis_opt_exp_\d+_combi=(?:\d+,?)+\s*$/.test(t)) {
                             return ''
                         }
                         return t
