@@ -88,6 +88,40 @@ VWO.push(['onEventReceive', 'jI', function (data) {
 }]);
 </script>
 <style>
+	.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+  }
+
+  /* Modal content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  } 
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
 .test {
 	height: 100px;
 	width: 100px;
@@ -232,7 +266,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!--<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQGPVQ9"-->
 <!--height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>-->
 <!-- End Google Tag Manager (noscript) -->
+<div id="buttonContainer"></div>
 
+<script>
+// Function to create and append the button
+function addButton() {
+    // Create a new button element
+    var button = document.createElement("button");
+    // Set button text
+    button.textContent = "Click me";
+    // Set button click event
+    button.addEventListener("click", function() {
+        alert("Button clicked!");
+    });
+    // Get the container where the button will be appended
+    var container = document.getElementById("buttonContainer");
+    // Append the button to the container
+    container.appendChild(button);
+}
+
+// Call the addButton function after 5 seconds (5000 milliseconds)
+setTimeout(addButton, 5000);
+</script>
 <p style="color:blue;margin-left:30px;">Hello World</p>
 <p>Hi Wingify</p>
 <a href="http://mohitkhanna.wingified.com/testFolder/">TestPage visit</a>
@@ -311,7 +366,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <img src="garden-rose-red-pink-56866.jpeg" alt="Flower Photo" width="500" height="600">
 <img src="garden-rose-red-pink-56866.jpeg" alt="Flower Photo" width="500" height="600">
 <img src="garden-rose-red-pink-56866.jpeg" alt="Flower Photo" width="500" height="600">-->
+<div id="myModal" class="modal">
 
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>This is a modal! You can put any content here.</p>
+  </div>
+</div>
     
 <div id='svg1' style="height:500px; width:500px; background-color:black">
 <svg width="250" height="250">
