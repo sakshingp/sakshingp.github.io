@@ -19,6 +19,44 @@
           });
       });
     }
+
+     window._pushcrew_http_font = 'Open Sans';
+    window._vwo_engage_cookie_default_lifetime=100;
+     window._vwo_engage_persist_in_local_storage=true;
+     window._vwo_engage_persist_in_indexed_db=true;
+     (function() {
+        if(window.location.href.indexOf('hash') == -1){
+           var hash = prompt("Enter account hash", "24bea2fb1747789fe7b14a87445f9628");
+        if (hash != null) {
+            window.location.href=window.location.href + '?hash=' + hash;
+            } 
+        }
+        
+    }());
+    function getQueryStringValue (key) {  
+        return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
+    }   
+    var src;
+    var account_hash=getQueryStringValue('hash') ? getQueryStringValue('hash') : '255a91a0b4a0bf562e5148efc6de9b97';
+    if(getQueryStringValue('env') == "") {
+        src = 'https://cdn.pushcrew.com/js/'+ account_hash + '.js?random=' + Date.now();
+    } else if(getQueryStringValue('env') == "app1") {
+       src = 'https://cdn1.pushcrew.com/js/'+ account_hash + '.js?random=' + Date.now();
+    } else {
+        src = 'https://cdn.pushcrewstaging.com/js/'+ account_hash + '.js?random=' + Date.now();
+    }
+    var qajs = 'test-jslib';
+    (function(p,u,s,h){
+        p._pcq=p._pcq||[];
+        p._pcq.push(['_currentTime',Date.now()]);
+        s=u.createElement('script');
+        s.type='text/javascript';
+        s.async=true;
+        s.src=src;
+        h=u.getElementsByTagName('script')[0];
+        h.parentNode.insertBefore(s,h);
+    })(window,document);
+
   </script>
 </head>
 <body>
