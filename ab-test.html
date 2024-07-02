@@ -29,6 +29,16 @@
     </style>
     <!-- Mida A/B Testing Script -->
 <script type="text/javascript" async src="https://cdn.mida.so/js/optimize.js?key=E3jxwZ6ldLNpLRg90mMX8O"></script>
+    <script>
+        setTimeout(function(){
+            const newSection = `
+            <h2>Section new</h2>
+            <p>This is the content of the new section new. This section was added dynamically using JavaScript.</p>
+        `;
+            document.querySelector('body > section:nth-child(2)').insertAdjacentHTML('afterend', newSection);
+        },10000)
+        
+    </script>
 </head>
 <body>
 
