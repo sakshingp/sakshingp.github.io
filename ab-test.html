@@ -32,11 +32,13 @@
     <script>
         setTimeout(function(){
             const newSection = `
-            <h2>Section new</h2>
-            <p>This is the content of the new section new. This section was added dynamically using JavaScript.</p>
+           <section>
+    <h2>Section new</h2>
+    <p>This is the content of the first section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel sapien justo. Suspendisse potenti.</p>
+</section>
         `;
             document.querySelector('body > section:nth-child(2)').insertAdjacentHTML('afterend', newSection);
-        },10000)
+        },5000)
         
     </script>
 </head>
