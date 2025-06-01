@@ -7,9 +7,16 @@
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <!--<meta name="referrer" content="no-referrer">-->
 <script type="text/javascript">
-	window.VWO = window.VWO || [];
-	window.VWO.push(['track.revenueConversion',"10"]);
+	
+        window.VWO = window.VWO || [];
+	VWO.event = VWO.event || function () {VWO.push(["event"].concat([].slice.call(arguments)))};
+
+	// Replace the property values with your actual values
+	VWO.event("productViewed", {
+		"pid": "99887"
+	});
 </script>
+	
 <script type="text/javascript">
 	window.VWO = window.VWO || [];
 	window.VWO.push(['track.goalConversion',5]);
