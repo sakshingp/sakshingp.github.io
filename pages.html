@@ -6,16 +6,7 @@
 
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <!--<meta name="referrer" content="no-referrer">-->
-<script type="text/javascript">
-	
-        window.VWO = window.VWO || [];
-	VWO.event = VWO.event || function () {VWO.push(["event"].concat([].slice.call(arguments)))};
 
-	// Replace the property values with your actual values
-	VWO.event("productViewed", {
-		"pid": "99887"
-	});
-</script>
 	
 <script type="text/javascript">
 	window.VWO = window.VWO || [];
@@ -343,7 +334,16 @@ VWO.push(['config', {
 // },5000);
 </script>
 <!-- End Visual Website Optimizer Asynchronous Code -->
+<script type="text/javascript">
+	
+        window.VWO = window.VWO || [];
+	VWO.event = VWO.event || function () {VWO.push(["event"].concat([].slice.call(arguments)))};
 
+	// Replace the property values with your actual values
+	VWO.event("productViewed", {
+		"pid": "99887"
+	});
+</script>
 
 <!-- Start Visual Website Optimizer Synchronous Code -->
 <!-- <script type='text/javascript'>
