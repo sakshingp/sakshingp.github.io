@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Plans with Social Proof</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS (Animate on Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <!-- SwiperJS for carousel -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <section class="max-w-5xl mx-auto py-12 px-4">
+    <h1 class="text-4xl font-bold text-center mb-10" data-aos="fade-up">Choose Your Plan</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      
+      <!-- Plan Cards with AOS animations -->
+      <div class="bg-white rounded-2xl shadow p-6 text-center" data-aos="fade-up" data-aos-delay="100">
+        <h2 class="text-xl font-semibold mb-2">Basic</h2>
+        <p class="text-3xl font-bold mb-4">$9<span class="text-base font-normal">/mo</span></p>
+        <ul class="text-sm mb-6 space-y-1">
+          <li>✔ 1 user</li>
+          <li>✔ 10 projects</li>
+          <li>✔ Email support</li>
+        </ul>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">Get Started</button>
+        <p class="text-sm text-gray-500 mt-4" id="basic-count"></p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow p-6 text-center border-2 border-blue-500" data-aos="fade-up" data-aos-delay="200">
+        <h2 class="text-xl font-semibold mb-2">Pro</h2>
+        <p class="text-3xl font-bold mb-4">$29<span class="text-base font-normal">/mo</span></p>
+        <ul class="text-sm mb-6 space-y-1">
+          <li>✔ 5 users</li>
+          <li>✔ 100 projects</li>
+          <li>✔ Priority support</li>
+        </ul>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">Choose Pro</button>
+        <p class="text-sm text-gray-500 mt-4" id="pro-count"></p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow p-6 text-center" data-aos="fade-up" data-aos-delay="300">
+        <h2 class="text-xl font-semibold mb-2">Premium</h2>
+        <p class="text-3xl font-bold mb-4">$59<span class="text-base font-normal">/mo</span></p>
+        <ul class="text-sm mb-6 space-y-1">
+          <li>✔ Unlimited users</li>
+          <li>✔ Unlimited projects</li>
+          <li>✔ Dedicated support</li>
+        </ul>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">Go Premium</button>
+        <p class="text-sm text-gray-500 mt-4" id="premium-count"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Carousel -->
+  <section class="bg-white py-12 px-4" data-aos="fade-up">
+    <h2 class="text-3xl font-bold text-center mb-8">What Our Customers Say</h2>
+    <div class="swiper mySwiper max-w-3xl mx-auto">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide text-center p-6 bg-gray-100 rounded-xl">
+          <p class="text-lg font-medium">“The Pro plan is perfect for our team. Affordable and packed with features!”</p>
+          <p class="mt-4 text-sm text-gray-600">– Ankit Sharma, Startup Founder</p>
+        </div>
+        <!-- Slide 2 -->
+        <div class="swiper-slide text-center p-6 bg-gray-100 rounded-xl">
+          <p class="text-lg font-medium">“We switched to Premium and the dedicated support is just incredible.”</p>
+          <p class="mt-4 text-sm text-gray-600">– Priya Desai, Product Manager</p>
+        </div>
+        <!-- Slide 3 -->
+        <div class="swiper-slide text-center p-6 bg-gray-100 rounded-xl">
+          <p class="text-lg font-medium">“Even the Basic plan covers all our needs as a small team.”</p>
+          <p class="mt-4 text-sm text-gray-600">– Rahul Mehta, Freelancer</p>
+        </div>
+      </div>
+      <!-- Pagination -->
+      <div class="swiper-pagination mt-4"></div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    // Animate on Scroll Init
+    AOS.init();
+
+    // Swiper Carousel Init
+    const swiper = new Swiper(".mySwiper", {
+      loop: true,
+      autoplay: { delay: 4000 },
+      pagination: { el: ".swiper-pagination" }
+    });
+
+    // Dynamic Social Proof Data (you can replace with API call)
+    const purchaseCounts = {
+      basic: 340,
+      pro: 1250,
+      premium: 520
+    };
+
+    //document.getElementById("basic-count").textContent = `✅ Purchased by ${purchaseCounts.basic} users`;
+    //document.getElementById("pro-count").textContent = `✅ Purchased by ${purchaseCounts.pro} users`;
+    //document.getElementById("premium-count").textContent = `✅ Purchased by ${purchaseCounts.premium} users`;
+  </script>
+</body>
+</html>
