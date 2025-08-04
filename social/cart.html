@@ -2,64 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Cart</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      padding: 30px;
-      background: #f9f9f9;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-    }
-
-    .cart-container {
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-
-    .product {
-      background: white;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      padding: 15px;
-      width: 220px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    .product img {
-      width: 100%;
-      border-radius: 6px;
-    }
-
-    .product-name {
-      font-weight: 600;
-      margin: 10px 0 5px;
-    }
-
-    .price {
-      color: #555;
-    }
-
-    .cart-summary {
-      margin-top: 40px;
-      padding: 20px;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      width: fit-content;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-
-    .discount-message {
-      margin-top: 15px;
-      font-weight: bold;
-      color: green;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShopEase Cart</title>
     <script type='text/javascript' id='vwoCode'>
 window._vwo_code || (function() {
 var account_id=1102601,
@@ -70,41 +14,210 @@ hide_element_style = 'opacity:0 !important;filter:alpha(opacity=0) !important;ba
 /* DO NOT EDIT BELOW THIS LINE */
 f=false,w=window,d=document,v=d.querySelector('#vwoCode'),cK='_vwo_'+account_id+'_settings',cc={};try{var c=JSON.parse(localStorage.getItem('_vwo_'+account_id+'_config'));cc=c&&typeof c==='object'?c:{}}catch(e){}var stT=cc.stT==='session'?w.sessionStorage:w.localStorage;code={nonce:v&&v.nonce,library_tolerance:function(){return typeof library_tolerance!=='undefined'?library_tolerance:undefined},settings_tolerance:function(){return cc.sT||settings_tolerance},hide_element_style:function(){return'{'+(cc.hES||hide_element_style)+'}'},hide_element:function(){if(performance.getEntriesByName('first-contentful-paint')[0]){return''}return typeof cc.hE==='string'?cc.hE:hide_element},getVersion:function(){return version},finish:function(e){if(!f){f=true;var t=d.getElementById('_vis_opt_path_hides');if(t)t.parentNode.removeChild(t);if(e)(new Image).src='https://dev.visualwebsiteoptimizer.com/ee.gif?a='+account_id+e}},finished:function(){return f},addScript:function(e){var t=d.createElement('script');t.type='text/javascript';if(e.src){t.src=e.src}else{t.text=e.text}v&&t.setAttribute('nonce',v.nonce);d.getElementsByTagName('head')[0].appendChild(t)},load:function(e,t){var n=this.getSettings(),i=d.createElement('script'),r=this;t=t||{};if(n){i.textContent=n;d.getElementsByTagName('head')[0].appendChild(i);if(!w.VWO||VWO.caE){stT.removeItem(cK);r.load(e)}}else{var o=new XMLHttpRequest;o.open('GET',e,true);o.withCredentials=!t.dSC;o.responseType=t.responseType||'text';o.onload=function(){if(t.onloadCb){return t.onloadCb(o,e)}if(o.status===200||o.status===304){_vwo_code.addScript({text:o.responseText})}else{_vwo_code.finish('&e=loading_failure:'+e)}};o.onerror=function(){if(t.onerrorCb){return t.onerrorCb(e)}_vwo_code.finish('&e=loading_failure:'+e)};o.send()}},getSettings:function(){try{var e=stT.getItem(cK);if(!e){return}e=JSON.parse(e);if(Date.now()>e.e){stT.removeItem(cK);return}return e.s}catch(e){return}},init:function(){if(d.URL.indexOf('__vwo_disable__')>-1)return;var e=this.settings_tolerance();w._vwo_settings_timer=setTimeout(function(){_vwo_code.finish();stT.removeItem(cK)},e);var t;if(this.hide_element()!=='body'){t=d.createElement('style');var n=this.hide_element(),i=n?n+this.hide_element_style():'',r=d.getElementsByTagName('head')[0];t.setAttribute('id','_vis_opt_path_hides');v&&t.setAttribute('nonce',v.nonce);t.setAttribute('type','text/css');if(t.styleSheet)t.styleSheet.cssText=i;else t.appendChild(d.createTextNode(i));r.appendChild(t)}else{t=d.getElementsByTagName('head')[0];var i=d.createElement('div');i.style.cssText='z-index: 2147483647 !important;position: fixed !important;left: 0 !important;top: 0 !important;width: 100% !important;height: 100% !important;background: white !important;display: block !important;';i.setAttribute('id','_vis_opt_path_hides');i.classList.add('_vis_hide_layer');t.parentNode.insertBefore(i,t.nextSibling)}var o=window._vis_opt_url||d.URL,s='https://dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(o)+'&vn='+version;if(w.location.search.indexOf('_vwo_xhr')!==-1){this.addScript({src:s})}else{this.load(s+'&x=true')}}};w._vwo_code=code;code.init();})();
 </script>
+  <style>
+    :root {
+      --primary-color: #4f46e5;
+      --accent-color: #6366f1;
+      --light-bg: rgba(255, 255, 255, 0.1);
+      --glass-bg: rgba(255, 255, 255, 0.3);
+      --text-color: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #4f46e5, #3b82f6);
+      color: var(--text-color);
+      backdrop-filter: blur(5px);
+    }
+
+    /* Header */
+    header {
+      background: var(--glass-bg);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    .cart-icon {
+      font-size: 1.6rem;
+    }
+
+    /* Products */
+    .cart-content {
+      padding: 40px;
+    }
+
+    .cart-container {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .product {
+      background: var(--glass-bg);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      width: 240px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-name {
+      margin: 15px 0 5px;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .price {
+      font-size: 1rem;
+      color: #e0e7ff;
+    }
+
+    /* Cart Summary */
+    .cart-summary {
+      margin: 50px auto 0;
+      padding: 30px;
+      width: 350px;
+      border-radius: 20px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.25);
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .cart-summary p {
+      margin: 10px 0;
+      font-size: 1.1rem;
+    }
+
+    .discount-message {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1rem;
+      color: #bbf7d0;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #dbeafe;
+      background: var(--light-bg);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    footer a {
+      color: #c7d2fe;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    @media (max-width: 768px) {
+      .cart-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Your Cart</h1>
 
-  <div class="cart-container">
-    <div class="product">
-      <img src="https://via.placeholder.com/220x150?text=Wireless+Headphones" alt="Headphones" />
-      <div class="product-name">Wireless Headphones</div>
-      <div class="price">₹1,499</div>
+  <header>
+    <h1>ShopEase</h1>
+    <div class="cart-icon">🛒</div>
+  </header>
+
+  <div class="cart-content">
+    <h2 style="text-align:center; margin-bottom: 30px;">Your Cart</h2>
+
+    <div class="cart-container">
+      <div class="product">
+        <img src="https://i.postimg.cc/hvNCBjSV/istockphoto-1178563043-1024x1024.jpg" alt="Headphones">
+        <div class="product-name">Wireless Headphones</div>
+        <div class="price">₹1,499</div>
+      </div>
+
+      <div class="product">
+        <img src="https://i.postimg.cc/W1wQMGNK/istockphoto-1475312484-1024x1024.jpg" alt="Smart Watch">
+        <div class="product-name">Smart Watch</div>
+        <div class="price">₹2,999</div>
+      </div>
+
+      <div class="product">
+        <img src="https://i.postimg.cc/nctR0XPt/istockphoto-1059154330-1024x1024.jpg" alt="Speaker">
+        <div class="product-name">Bluetooth Speaker</div>
+        <div class="price">₹1,199</div>
+      </div>
     </div>
 
-    <div class="product">
-      <img src="https://via.placeholder.com/220x150?text=Smart+Watch" alt="Smart Watch" />
-      <div class="product-name">Smart Watch</div>
-      <div class="price">₹2,999</div>
-    </div>
-
-    <div class="product">
-      <img src="https://via.placeholder.com/220x150?text=Bluetooth+Speaker" alt="Speaker" />
-      <div class="product-name">Bluetooth Speaker</div>
-      <div class="price">₹1,199</div>
+    <div class="cart-summary">
+      <p><strong>Total Items:</strong> 3</p>
+      <p><strong>Cart Total:</strong> ₹5,697</p>
+      <div id="discountMessage" class="discount-message">Checking delivery discount...</div>
     </div>
   </div>
 
-  <div class="cart-summary">
-    <p><strong>Total Items:</strong> 3</p>
-    <p><strong>Cart Total:</strong> ₹5,697</p>
-    <div id="discountMessage" class="discount-message">Checking delivery discount...</div>
-  </div>
+  <footer>
+    &copy; 2025 ShopEase. All rights reserved.
+    <a href="#">Privacy</a> |
+    <a href="#">Terms</a>
+  </footer>
 
   <script>
-    
-    localStorage.setItem("userId", "user_123")
+    const userId = "user_123";
 
-    
+    function fetchLastMonthOrders(userId) {
+      return [
+        { totalPrice: 900, purchaseTimestamp: "2025-07-10" },
+        { totalPrice: 1200, purchaseTimestamp: "2025-07-15" },
+        { totalPrice: 800, purchaseTimestamp: "2025-07-25" }
+      ];
+    }
+
+    function calculateAOV(orders) {
+      const total = orders.reduce((sum, order) => sum + order.totalPrice, 0);
+      return total / orders.length;
+    }
+
+    function updateDeliveryDiscount(aov) {
+      const messageEl = document.getElementById("discountMessage");
+      if (aov > 1000) {
+        messageEl.textContent = "🎉 Free Delivery unlocked based on your order history!";
+      } else if (aov >= 500) {
+        messageEl.textContent = "✅ 50% Delivery Discount based on your past orders!";
+      } else {
+        messageEl.textContent = "ℹ️ No delivery discount available at this time.";
+      }
+    }
+
+    const pastOrders = fetchLastMonthOrders(userId);
+    const avgOrderValue = calculateAOV(pastOrders);
+    updateDeliveryDiscount(avgOrderValue);
   </script>
 </body>
 </html>
