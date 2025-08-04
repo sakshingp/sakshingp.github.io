@@ -188,7 +188,7 @@ f=false,w=window,d=document,v=d.querySelector('#vwoCode'),cK='_vwo_'+account_id+
 
   <script>
     const userId = "user_123";
-
+    localStorage.setItem("userId", userId)
     function fetchLastMonthOrders(userId) {
       return [
         { totalPrice: 900, purchaseTimestamp: "2025-07-10" },
