@@ -135,6 +135,7 @@ hide_element_style = 'opacity:0 !important;filter:alpha(opacity=0) !important;ba
 /* DO NOT EDIT BELOW THIS LINE */
 f=false,w=window,d=document,v=d.querySelector('#vwoCode'),cK='_vwo_'+account_id+'_settings',cc={};try{var c=JSON.parse(localStorage.getItem('_vwo_'+account_id+'_config'));cc=c&&typeof c==='object'?c:{}}catch(e){}var stT=cc.stT==='session'?w.sessionStorage:w.localStorage;code={nonce:v&&v.nonce,library_tolerance:function(){return typeof library_tolerance!=='undefined'?library_tolerance:undefined},settings_tolerance:function(){return cc.sT||settings_tolerance},hide_element_style:function(){return'{'+(cc.hES||hide_element_style)+'}'},hide_element:function(){if(performance.getEntriesByName('first-contentful-paint')[0]){return''}return typeof cc.hE==='string'?cc.hE:hide_element},getVersion:function(){return version},finish:function(e){if(!f){f=true;var t=d.getElementById('_vis_opt_path_hides');if(t)t.parentNode.removeChild(t);if(e)(new Image).src='https://dev.visualwebsiteoptimizer.com/ee.gif?a='+account_id+e}},finished:function(){return f},addScript:function(e){var t=d.createElement('script');t.type='text/javascript';if(e.src){t.src=e.src}else{t.text=e.text}v&&t.setAttribute('nonce',v.nonce);d.getElementsByTagName('head')[0].appendChild(t)},load:function(e,t){var n=this.getSettings(),i=d.createElement('script'),r=this;t=t||{};if(n){i.textContent=n;d.getElementsByTagName('head')[0].appendChild(i);if(!w.VWO||VWO.caE){stT.removeItem(cK);r.load(e)}}else{var o=new XMLHttpRequest;o.open('GET',e,true);o.withCredentials=!t.dSC;o.responseType=t.responseType||'text';o.onload=function(){if(t.onloadCb){return t.onloadCb(o,e)}if(o.status===200||o.status===304){_vwo_code.addScript({text:o.responseText})}else{_vwo_code.finish('&e=loading_failure:'+e)}};o.onerror=function(){if(t.onerrorCb){return t.onerrorCb(e)}_vwo_code.finish('&e=loading_failure:'+e)};o.send()}},getSettings:function(){try{var e=stT.getItem(cK);if(!e){return}e=JSON.parse(e);if(Date.now()>e.e){stT.removeItem(cK);return}return e.s}catch(e){return}},init:function(){if(d.URL.indexOf('__vwo_disable__')>-1)return;var e=this.settings_tolerance();w._vwo_settings_timer=setTimeout(function(){_vwo_code.finish();stT.removeItem(cK)},e);var t;if(this.hide_element()!=='body'){t=d.createElement('style');var n=this.hide_element(),i=n?n+this.hide_element_style():'',r=d.getElementsByTagName('head')[0];t.setAttribute('id','_vis_opt_path_hides');v&&t.setAttribute('nonce',v.nonce);t.setAttribute('type','text/css');if(t.styleSheet)t.styleSheet.cssText=i;else t.appendChild(d.createTextNode(i));r.appendChild(t)}else{t=d.getElementsByTagName('head')[0];var i=d.createElement('div');i.style.cssText='z-index: 2147483647 !important;position: fixed !important;left: 0 !important;top: 0 !important;width: 100% !important;height: 100% !important;background: white !important;display: block !important;';i.setAttribute('id','_vis_opt_path_hides');i.classList.add('_vis_hide_layer');t.parentNode.insertBefore(i,t.nextSibling)}var o=window._vis_opt_url||d.URL,s='https://dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(o)+'&vn='+version;if(w.location.search.indexOf('_vwo_xhr')!==-1){this.addScript({src:s})}else{this.load(s+'&x=true')}}};w._vwo_code=code;code.init();})();
 </script>
+
 <!-- End VWO Async SmartCode -->
 </head>
 <body>
@@ -147,6 +148,16 @@ f=false,w=window,d=document,v=d.querySelector('#vwoCode'),cK='_vwo_'+account_id+
   <button id="btn4">Click Me 4</button>
 
   <div id="output" style="margin-top: 20px; font-weight: bold;"></div>
+
+  <div style="margin-top: 40px;">
+  <h3>Load Different Products</h3>
+  <button class="product-btn" data-pid="11223-GRN">Load Product Green</button>
+  <button class="product-btn" data-pid="99887-YLW">Load Product Yellow</button>
+  <button class="product-btn" data-pid="67890-BLK">Load Product Black</button>
+  <button class="product-btn" data-pid="54321-BLU">Load Product Blue</button>
+  <button class="product-btn" data-pid="12345-RED">Load Product Red</button>
+  <button class="product-btn" data-pid="12345-PINK">Load Product Pink</button>
+</div>
 
   <div class="container">
     <div class="product-container">
@@ -269,6 +280,54 @@ f=false,w=window,d=document,v=d.querySelector('#vwoCode'),cK='_vwo_'+account_id+
       document.getElementById('output').innerText = `"planId": 4000, "planPrice": 20000,"planName": "Custom","planExpiry": "01072026"`;
     });
   </script>
+  <script>
+  // Sample product data mapping
+  const products = {
+    "11223-GRN": {
+      title: "Wireless Bluetooth Headphones - GREEN",
+      image: "https://i.postimg.cc/nctR0XPt/istockphoto-1059154330-1024x1024.jpg"
+    },
+    "99887-YLW": {
+      title: "Wireless Bluetooth Headphones - YELLOW",
+      image: "https://i.postimg.cc/hvNCBjSV/istockphoto-1178563043-1024x1024.jpg"
+    },
+    "67890-BLK": {
+      title: "Wireless Bluetooth Headphones - BLACK",
+      image: "https://i.postimg.cc/nctR0XPt/istockphoto-1059154330-1024x1024.jpg"
+    },
+    "54321-BLU": {
+      title: "Wireless Bluetooth Headphones - BLUE",
+      image: "https://i.postimg.cc/hvNCBjSV/istockphoto-1178563043-1024x1024.jpg"
+    },
+    "12345-RED": {
+      title: "Wireless Bluetooth Headphones - RED",
+      image: "https://i.postimg.cc/nctR0XPt/istockphoto-1059154330-1024x1024.jpg"
+    },
+    "12345-PINK": {
+      title: "Wireless Bluetooth Headphones - PINK",
+      image: "https://i.postimg.cc/nctR0XPt/istockphoto-1059154330-1024x1024.jpg"
+    }
+    
+  };
 
+  // Get current pid from query string
+  const queryParams = new URLSearchParams(window.location.search);
+  const pid = queryParams.get("pid");
+
+  // If pid exists, update product details
+  if (pid && products[pid]) {
+    document.querySelector(".product-title").innerText = products[pid].title;
+    document.querySelector(".product-image img").src = products[pid].image;
+  }
+
+  // Add event listeners to product buttons
+  document.querySelectorAll(".product-btn").forEach(btn => {
+    btn.addEventListener("click", function () {
+      const newPid = this.dataset.pid;
+      // Reload page with ?pid=newPid
+      window.location.search = `?pid=${newPid}`;
+    });
+  });
+</script>
 </body>
 </html>
