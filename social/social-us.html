@@ -311,8 +311,8 @@ f=false,w=window,d=document,v=d.querySelector('#vwoCode'),cK='_vwo_'+account_id+
   };
 
   // Get current pid from query string
-  const queryParams = new URLSearchParams(window.location.search);
-  const pid = queryParams.get("pid");
+  const qP = new URLSearchParams(window.location.search);
+  const pid = qP.get("pid");
 
   // If pid exists, update product details
   if (pid && products[pid]) {
