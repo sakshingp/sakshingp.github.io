@@ -151,12 +151,12 @@ f=false,w=window,d=document,v=d.querySelector('#vwoCode'),cK='_vwo_'+account_id+
 
   <div style="margin-top: 40px;">
   <h3>Load Different Products</h3>
-  <button class="product-btn" data-pid="11223-GRN">Load Product Green</button>
-  <button class="product-btn" data-pid="99887-YLW">Load Product Yellow</button>
-  <button class="product-btn" data-pid="67890-BLK">Load Product Black</button>
-  <button class="product-btn" data-pid="54321-BLU">Load Product Blue</button>
-  <button class="product-btn" data-pid="12345-RED">Load Product Red</button>
-  <button class="product-btn" data-pid="12345-PINK">Load Product Pink</button>
+  <button class="product-btn" data-pid="11223-GRN" style="background-color: green">Load Product Green</button>
+  <button class="product-btn" data-pid="99887-YLW" style="background-color: yellow">Load Product Yellow</button>
+  <button class="product-btn" data-pid="67890-BLK" style="background-color: grey" >Load Product Black</button>
+  <button class="product-btn" data-pid="54321-BLU" style="background-color: blue">Load Product Blue</button>
+  <button class="product-btn" data-pid="12345-RED" style="background-color: red">Load Product Red</button>
+  <button class="product-btn" data-pid="12345-PINK" style="background-color: pink" >Load Product Pink</button>
 </div>
 
   <div class="container">
@@ -285,27 +285,33 @@ f=false,w=window,d=document,v=d.querySelector('#vwoCode'),cK='_vwo_'+account_id+
   const products = {
     "11223-GRN": {
       title: "Wireless Bluetooth Headphones - GREEN",
-      image: "https://i.postimg.cc/nctR0XPt/istockphoto-1059154330-1024x1024.jpg"
+      image: "https://i.postimg.cc/nctR0XPt/istockphoto-1059154330-1024x1024.jpg",
+      color: "green"
     },
     "99887-YLW": {
       title: "Wireless Bluetooth Headphones - YELLOW",
-      image: "https://i.postimg.cc/hvNCBjSV/istockphoto-1178563043-1024x1024.jpg"
+      image: "https://i.postimg.cc/hvNCBjSV/istockphoto-1178563043-1024x1024.jpg",
+      color: "yellow"
     },
     "67890-BLK": {
       title: "Wireless Bluetooth Headphones - BLACK",
-      image: "https://i.postimg.cc/nctR0XPt/istockphoto-1059154330-1024x1024.jpg"
+      image: "https://i.postimg.cc/nctR0XPt/istockphoto-1059154330-1024x1024.jpg",
+       color: "grey"
     },
     "54321-BLU": {
       title: "Wireless Bluetooth Headphones - BLUE",
-      image: "https://i.postimg.cc/hvNCBjSV/istockphoto-1178563043-1024x1024.jpg"
+      image: "https://i.postimg.cc/hvNCBjSV/istockphoto-1178563043-1024x1024.jpg",
+       color: "blue"
     },
     "12345-RED": {
       title: "Wireless Bluetooth Headphones - RED",
-      image: "https://i.postimg.cc/nctR0XPt/istockphoto-1059154330-1024x1024.jpg"
+      image: "https://i.postimg.cc/nctR0XPt/istockphoto-1059154330-1024x1024.jpg",
+       color: "red"
     },
     "12345-PINK": {
       title: "Wireless Bluetooth Headphones - PINK",
-      image: "https://i.postimg.cc/nctR0XPt/istockphoto-1059154330-1024x1024.jpg"
+      image: "https://i.postimg.cc/nctR0XPt/istockphoto-1059154330-1024x1024.jpg",
+       color: "pink"
     }
     
   };
@@ -317,6 +323,7 @@ f=false,w=window,d=document,v=d.querySelector('#vwoCode'),cK='_vwo_'+account_id+
   // If pid exists, update product details
   if (prid && products[pid]) {
     document.querySelector(".product-title").innerText = products[pid].title;
+    document.querySelector(".product-title").style.color = products[pid].color;
     document.querySelector(".product-image img").src = products[pid].image;
   }
 
