@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shadow DOM Examples</title>
+</head>
+<body>
+  <h1>Shadow DOM / Shadow Root examples</h1>
+
+  <section>
+    <h2>Open Shadow Root (accessible from page script)</h2>
+    <my-card title="Hello Shadow"></my-card>
+  </section>
+
+  <section>
+    <h2>Closed Shadow Root (not accessible from page script)</h2>
+    <secret-widget></secret-widget>
+  </section>
+
+  <section>
+    <h2>Iframe of Same Domain</h2>
+    <p>This iframe loads the same HTML page (same domain example).</p>
+    <iframe id="sameDomainFrame" src="" width="600" height="300" style="border:1px solid #ccc;"></iframe>
+  </section>
+
+  <section>
+    <h2>Why use Shadow DOM?</h2>
+    <ul>
+      <li>Style encapsulation (styles inside shadow don't leak out)</li>
+      <li>DOM encapsulation (structure is hidden from page CSS/selectors)</li>
+      <li>Reusable components</li>
+    </ul>
+  </section>
+
+  <script>
+    // --- Open shadow root example: <my-card>
+    class MyCard extends HTMLElement {
+      constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
+        const title = this.getAttribute('title') || 'Default title';
+
+        shadow.innerHTML = `
+          <style>
+            :host {
+              display: block;
+              max-width: 300px;
+              font-family: system-ui, Arial, sans-serif;
+              margin: 0.5rem 0;
+            }
+            .card {
+              border: 1px solid #ddd;
+              border-radius: 8px;
+              padding: 12px;
+              box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+              background: linear-gradient(180deg, #fff, #fbfbfb);
+            }
+            h3 { margin: 0 0 8px 0; font-size: 1.05rem }
+            p { margin: 0; color: #444 }
+            button { margin-top: 8px }
+          </style>
+          <div class="card">
+            <h3>${title}</h3>
+            <p>This content lives inside an <strong>open</strong> shadow root.</p>
+            <button id="btn">Change title from page</button>
+          </div>
+        `;
+
+        shadow.querySelector('#btn').addEventListener('click', () => {
+          const newTitle = prompt('New title for the card:', title) || title;
+          shadow.querySelector('h3').textContent = newTitle;
+        });
+      }
+
+      static get observedAttributes() { return ['title']; }
+      attributeChangedCallback(name, oldVal, newVal) {
+        if (name === 'title' && this.shadowRoot) {
+          const h3 = this.shadowRoot.querySelector('h3');
+          if (h3) h3.textContent = newVal;
+        }
+      }
+    }
+    customElements.define('my-card', MyCard);
+
+    // --- Closed shadow root example: <secret-widget>
+    class SecretWidget extends HTMLElement {
+      constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'closed' });
+        shadow.innerHTML = `
+          <style>
+            :host { display: inline-block; font-family: Arial, sans-serif }
+            .box {
+              padding: 10px 14px; border-radius: 6px; background: #222; color: #fff;
+            }
+          </style>
+          <div class="box">This widget uses a <strong>closed</strong> shadow root.</div>
+        `;
+      }
+    }
+    customElements.define('secret-widget', SecretWidget);
+
+    // --- Demonstrate difference
+    window.addEventListener('DOMContentLoaded', () => {
+      const card = document.querySelector('my-card');
+      console.log('my-card.shadowRoot present?', !!card.shadowRoot);
+
+      const secret = document.querySelector('secret-widget');
+      console.log('secret-widget.shadowRoot present?', !!secret.shadowRoot);
+
+      setTimeout(() => {
+        card.setAttribute('title', 'Title set by outer script');
+      }, 1000);
+
+      // Set iframe source to current page URL for same-domain demo
+      document.getElementById('sameDomainFrame').src = window.location.href;
+    });
+  </script>
+</body>
+</html>
