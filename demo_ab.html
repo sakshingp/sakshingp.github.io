@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ABM Shorter Form Demo — Mutiny-style</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#f5f7fa; color:#111; padding:28px; }
+    .card { background:white; border-radius:12px; padding:22px; max-width:760px; margin:0 auto; box-shadow: 0 6px 20px rgba(12,20,40,0.08); }
+    h1 { margin:0 0 6px; font-size:20px; }
+    p.lead { margin:0 0 18px; color:#475569; }
+    form { display:grid; gap:10px; }
+    label { font-size:13px; color:#334155; }
+    input, select, textarea { padding:10px 12px; border-radius:8px; border:1px solid #e2e8f0; font-size:14px; width:100%; box-sizing:border-box; }
+    .row { display:flex; gap:12px; }
+    .col { flex:1; }
+    .muted { color:#64748b; font-size:13px; }
+    .cta { background:#0f172a; color:white; padding:12px 16px; border-radius:10px; cursor:pointer; border:0; font-weight:600; }
+    .secondary { background:transparent; color:#0f172a; border:1px solid #cbd5e1; padding:10px 12px; border-radius:8px; cursor:pointer; }
+    .hidden { display:none !important; }
+    .notice { background:#eef2ff; padding:10px; border-radius:8px; font-size:13px; color:#3730a3; }
+    .success { background:#ecfdf5; color:#065f46; padding:10px; border-radius:8px; font-size:13px; }
+    .small { font-size:13px; color:#475569; }
+    .field-note { font-size:12px; color:#94a3b8; margin-top:4px; }
+    .captcha { display:flex; align-items:center; gap:8px; }
+    .calendar-btn { background:#0ea5a4; color:white; padding:10px 12px; border-radius:8px; font-weight:600; border:0; cursor:pointer; }
+    .debug { margin-top:14px; background:#fff7ed; padding:10px; border-radius:8px; font-size:13px; color:#92400e; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Request a Demo — ABM Shorter Form Demo</h1>
+    <p class="lead">This demo shows how the form adapts for target accounts (ABM) vs regular visitors.</p>
+
+    <div id="personalized-banner" class="notice hidden"></div>
+
+    <form id="demoForm" autocomplete="on">
+      <div id="nameRow" class="row">
+        <div class="col">
+          <label for="name">Full name</label>
+          <input id="name" name="name" placeholder="Jane Doe" />
+        </div>
+        <div class="col">
+          <label for="company">Company</label>
+          <input id="company" name="company" placeholder="Your company" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label for="email">Work email</label>
+          <input id="email" name="email" type="email" placeholder="you@company.com" required />
+          <div id="emailNote" class="field-note">Use your work email for a faster response.</div>
+        </div>
+        <div class="col" id="jobCol">
+          <label for="job">Job title</label>
+          <input id="job" name="job" placeholder="e.g., Head of Marketing" />
+        </div>
+      </div>
+
+      <div id="optionalFields">
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" placeholder="+1 (555) 555-5555" />
+
+        <label for="budget">Estimated budget</label>
+        <select id="budget" name="budget">
+          <option value="">Select</option>
+          <option value="<$5k">&lt;$5k</option>
+          <option value="$5-20k">$5–20k</option>
+          <option value="$20-100k">$20–100k</option>
+          <option value=">$100k">&gt;$100k</option>
+        </select>
+
+        <label for="how">How did you hear about us?</label>
+        <input id="how" name="how" placeholder="LinkedIn, friend, search..." />
+      </div>
+
+      <div id="captchaRow" class="captcha">
+        <input id="captcha" placeholder="Type 'I am human'" />
+        <div class="small muted">Bot check</div>
+      </div>
+
+      <div style="display:flex; gap:10px; margin-top:8px; align-items:center;">
+        <button id="submitBtn" class="cta" type="submit">Request demo</button>
+        <button id="calBtn" type="button" class="calendar-btn hidden">Book with my rep</button>
+        <button id="altBtn" type="button" class="secondary hidden">1-click Request (ABM)</button>
+      </div>
+
+      <div id="formHint" class="small muted" style="margin-top:10px;">Average time to complete: <strong id="avgTime">90s</strong></div>
+
+    </form>
+
+    <div id="result" class="success hidden" style="margin-top:14px;"></div>
+
+    <div id="debug" class="debug hidden">
+      <strong>Debug</strong>
+      <pre id="debugPre" style="white-space:pre-wrap; margin:8px 0 0;"></pre>
+    </div>
+  </div>
+
+  <script>
+    /****************************************************************
+     * Simulated backend / account intelligence
+     *
+     * Demo usage:
+     *  - Regular visitor: open file normally
+     *  - ABM detected via URL: ?account=Acme&persona=exec&known=true
+     *  - Or try: ?account=Acme&known=true&autofillName=John%20Smith&autofillEmail=john@acme.com
+     ****************************************************************/
+    const accountDB = {
+      "Acme": { industry: "Retail", size: "Enterprise", isICP: true, rep: "Sakshi Nagpal", calendar: "https://cal.example.com/sakshi" },
+      "BetaApps": { industry: "SaaS", size: "Mid-market", isICP: true, rep: "Ravi Patel", calendar: "https://cal.example.com/ravi" },
+      "SmallStart": { industry: "Ecommerce", size: "SMB", isICP: false }
+    };
+
+    // Helpers
+    function qs(name) {
+      return new URLSearchParams(window.location.search).get(name);
+    }
+    function show(el) { el.classList.remove('hidden'); }
+    function hide(el) { el.classList.add('hidden'); }
+
+    // Elements
+    const banner = document.getElementById('personalized-banner');
+    const companyInput = document.getElementById('company');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const jobCol = document.getElementById('jobCol');
+    const optionalFields = document.getElementById('optionalFields');
+    const captchaRow = document.getElementById('captchaRow');
+    const submitBtn = document.getElementById('submitBtn');
+    const calBtn = document.getElementById('calBtn');
+    const altBtn = document.getElementById('altBtn');
+    const avgTime = document.getElementById('avgTime');
+    const result = document.getElementById('result');
+    const debugBlock = document.getElementById('debug');
+    const debugPre = document.getElementById('debugPre');
+
+    // Read URL params / simulate detection
+    const accountParam = qs('account');      // e.g., "Acme"
+    const known = qs('known') === 'true';   // simulate "we know this account"
+    const persona = qs('persona') || '';    // e.g., "exec", "engineer", "marketing"
+    const autofillName = qs('autofillName');
+    const autofillEmail = qs('autofillEmail');
+
+    // Start personalization logic
+    let isABM = false;
+    let accountInfo = null;
+    if (accountParam && accountDB[accountParam]) {
+      accountInfo = accountDB[accountParam];
+      // Example criteria: account exists in DB AND known flag true -> ABM
+      isABM = accountInfo.isICP && known;
+    } else if (accountParam && !accountDB[accountParam]) {
+      // unknown account but account param provided - treat as non-ICP
+      accountInfo = { industry: "Unknown", size: "Unknown", isICP: false };
+      isABM = false;
+    }
+
+    // Microcopy & banner
+    // if (isABM) {
+    //   banner.textContent = `Hi ${autofillName ? autofillName.split(' ')[0] : 'there'} — we recognize ${accountParam} as a high-value account. This form is streamlined for you.`;
+    //   show(banner);
+    // }
+
+    // Autofill company & user data if available (simulate Clearbit/Reveal)
+    // if (accountParam) {
+    //   companyInput.value = accountParam;
+    //   companyInput.setAttribute('data-sourced', 'reveal');
+    // }
+    // if (autofillName) nameInput.value = decodeURIComponent(autofillName);
+    // if (autofillEmail) emailInput.value = decodeURIComponent(autofillEmail);
+
+    // Persona-based form reduction
+    function applyPersonaReductions(personaStr) {
+      // Example: executive -> minimal fields; engineer -> show technical fields (we'll treat job as important for engineer)
+      if (!personaStr) return;
+      if (personaStr.toLowerCase() === 'exec') {
+        hide(jobCol); // exec won't need job title
+        avgTime.textContent = '30s';
+      } else if (personaStr.toLowerCase() === 'engineer') {
+        show(jobCol);
+        avgTime.textContent = '75s';
+      } else if (personaStr.toLowerCase() === 'marketing') {
+        show(jobCol);
+        avgTime.textContent = '60s';
+      }
+    }
+    //applyPersonaReductions(persona);
+
+    // ABM-specific shorter form logic
+    // if (isABM) {
+    //   // 1. Hide low-value fields
+    //   //hide(optionalFields); // phone, budget, how-heard
+    //   //hide(captchaRow);     // 2. Remove CAPTCHA for known ICP
+
+    //   // 3. Change CTA copy (premium)
+    //   //submitBtn.textContent = 'Book a White-Glove Demo';
+
+    //   // 4. Reveal alternative conversion options: calendar & 1-click
+    //   if (accountInfo && accountInfo.calendar) {
+    //     calBtn.onclick = () => window.open(accountInfo.calendar, '_blank');
+    //     calBtn.textContent = `Book with ${accountInfo.rep}`;
+    //     show(calBtn);
+    //   }
+    //   altBtn.textContent = '1-click Request (Send to my rep)';
+    //   show(altBtn);
+
+    //   // 5. Microcopy personalization
+    //   document.getElementById('formHint').classList.remove('muted');
+    //   document.getElementById('formHint').innerHTML = `<strong>${accountInfo.industry} teams</strong> get priority scheduling. Avg. response time: 2 business hours.`;
+
+    //   // 6. Personalization: auto-fill rep name into a note (simulated)
+    //   banner.textContent += ` Your customer success rep: ${accountInfo.rep}.`;
+    //   show(banner);
+    // } else {
+    //   // Non-ICP: keep full form, normal CTA
+    //   submitBtn.textContent = 'Request demo';
+    //   avgTime.textContent = '90s';
+    // }
+
+    // Extra: if we detect repeated visits (simulate with localStorage)
+    // const visitsKey = `visits_${companyInput.value || 'anon'}`;
+    // const visits = parseInt(localStorage.getItem(visitsKey) || '0', 10) + 1;
+    // localStorage.setItem(visitsKey, visits);
+    // if (visits > 1 && isABM) {
+    //   // Show "Welcome back" banner / CTA tweak for repeat visits
+    //   banner.textContent = `Welcome back — ${accountParam} — ready to fast-track your demo?`;
+    //   show(banner);
+    // }
+
+    // Form submission handler
+    document.getElementById('demoForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      // Simple validation: captcha only for non-ICP
+      if (!isABM) {
+        const capVal = document.getElementById('captcha').value || '';
+        if (capVal.trim().toLowerCase() !== 'i am human') {
+          alert('Please complete the bot check by typing: I am human');
+          return;
+        }
+      }
+
+      // Simulate sending data
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      const payload = {
+        name: nameInput.value,
+        email: emailInput.value,
+        company: companyInput.value,
+        job: document.getElementById('job').value,
+        phone: document.getElementById('phone').value,
+        budget: document.getElementById('budget').value,
+        how: document.getElementById('how').value,
+        accountDetected: accountParam || null,
+        isABM
+      };
+
+      // Simulate network delay
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = isABM ? 'Book a White-Glove Demo' : 'Request demo';
+        result.innerHTML = isABM
+          ? `Thanks — your request has been flagged for priority handling. ${accountInfo.rep} will reach out within 2 business hours.`
+          : `Thanks for requesting a demo — we'll email you within 1 business day.`;
+        show(result);
+
+        // Personalized validation message / trust builder
+        // if (isABM) {
+        //   const trust = document.createElement('div');
+        //   trust.className = 'success';
+        //   trust.style.marginTop = '8px';
+        //   trust.innerHTML = `We already work with similar companies: <strong>ExampleCorp</strong>, <strong>RetailCo</strong>.`;
+        //   result.appendChild(trust);
+        // }
+
+        // Debug output
+        debugPre.textContent = JSON.stringify(payload, null, 2);
+        show(debugBlock);
+
+      }, 800);
+    });
+
+    // 1-click alt button handler (ABM fast path)
+    // altBtn.addEventListener('click', () => {
+    //   // Simulate sending lightweight ABM signal to rep
+    //   result.innerHTML = `One-click request sent to ${accountInfo.rep}. We'll follow up on ${emailInput.value || 'your work email'}.`;
+    //   show(result);
+    // });
+
+    // Expose a small console message to guide demoers
+    // console.info('Demo controls:\n - ?account=Acme&known=true  (simulate ABM)\n - ?account=Acme&known=true&persona=exec\n - ?autofillName=John%20Smith&autofillEmail=john@acme.com');
+  </script>
+</body>
+</html>
